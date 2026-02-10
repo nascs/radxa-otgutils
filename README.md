@@ -11,6 +11,7 @@ The following gadgets are supported:
 - radxa-adbd
 - radxa-ecm (previously radxa-usbnet)
 - radxa-ncm
+- radxa-udc
 
 They can be configured from [`rsetup`](https://github.com/radxa-pkg/rsetup) which is included in our systems.
 

@@ -91,6 +91,9 @@ function_init()
         ecm|ncm)
             local GADGET="$MODE.usb0"
             ;;
+        udc)
+            local GADGET="udc"
+            ;;
     esac
 
     if [[ ! -e "/sys/kernel/config/usb_gadget/$UDC/functions/$GADGET" ]];
@@ -112,6 +115,9 @@ function_stop()
             ;;
         ecm|ncm)
             local GADGET="$MODE.usb0"
+            ;;
+        uvc)
+            local GADGET="uvc.usb0"
             ;;
     esac
 
@@ -196,8 +202,8 @@ adbd|ecm|ncm)
     MODE="$1"
     ;;
 *)
-    echo "Unknown mode. Valid values are adbd, ecm, and ncm."
-    echo "Usage: $0 <adbd|ecm|ncm> <UDC> <start|stop|restart>"
+    echo "Unknown mode. Valid values are adbd, ecm, ncm, uvc"
+    echo "Usage: $0 <adbd|ecm|ncm|uvc> <UDC> <start|stop|restart>"
     exit 1
 esac
 
@@ -207,7 +213,7 @@ then
     UDC="$2"
 else
     echo "This UDC does not exist, you can turn on the OTG port Peripheral mode device tree overlay at rsetup and look in the /sys/class/udc directory for."
-    echo "Usage: $0 <adbd|ecm|ncm> <UDC> <start|stop|restart>"
+    echo "Usage: $0 <adbd|ecm|ncm|uvc> <UDC> <start|stop|restart>"
     exit 1
 fi
 
@@ -223,7 +229,7 @@ restart|reload)
     start
     ;;
 *)
-    echo "Usage: $0 <adbd|ecm|ncm> <UDC> <start|stop|restart>"
+    echo "Usage: $0 <adbd|ecm|ncm|uvc> <UDC> <start|stop|restart>"
     exit 1
 esac
 
